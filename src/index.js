@@ -15,13 +15,6 @@ function findWords(e) {
   clearOldResults();
 
   const searchTerm = e.target.elements.searchTerm.value.toLowerCase();
-
-  const mainMatchIndexes = [];
-  for (let i = 0; i < 5; i++) {
-    if (searchTerm[i] !== "?") mainMatchIndexes.push(i);
-  }
-
-  const searchTermLetters = searchTerm.split("");
   const searchTermRegexString = "^" + searchTerm.replaceAll("?", "[a-z]") + "$";
   const searchTermRegex = new RegExp(searchTermRegexString);
 
@@ -34,9 +27,13 @@ function findWords(e) {
 
   for (word of words) {
     if (searchTermRegex.test(word)) {
-      if (!testWordContaining(mainMatchIndexes, word, optionalMatches))
-        continue;
-      addAResult(word, searchTermLetters);
+      const processedWord = testWordContaining(
+        searchTerm,
+        word,
+        optionalMatches
+      );
+      if (!processedWord) continue;
+      addAResult(processedWord);
       hasResult = true;
     }
   }
@@ -48,43 +45,47 @@ function clearOldResults() {
   resultsDiv.innerHTML = "";
 }
 
-function testWordContaining(mainMatchIndexes, word, contains) {
+function testWordContaining(searchTerm, word, contains) {
   let wordRemovingMainMatches = "";
 
   for (let i = 0; i < 5; i++) {
-    if (!mainMatchIndexes.includes(i)) wordRemovingMainMatches += word[i];
+    const letter = searchTerm[i] !== "?" ? word[i].toUpperCase() : word[i];
+    wordRemovingMainMatches += letter;
   }
 
   for (contain of contains) {
-    if (!wordRemovingMainMatches.includes(contain)) {
-      return false;
-    }
+    if (!wordRemovingMainMatches.includes(contain)) return false;
+    wordRemovingMainMatches = wordRemovingMainMatches.replaceAll(
+      contain,
+      contain.toUpperCase()
+    );
   }
 
-  return true;
+  return wordRemovingMainMatches;
 }
 
-function addAResult(word, searchTermLetters) {
+function addAResult(word) {
   const p = document.createElement("p");
-  searchTermLetters.forEach((searchLetter, letterIndex) => {
-    const wordLetter = word[letterIndex];
-    let span;
 
-    if (searchLetter === "?") {
-      span = createASpan(wordLetter);
+  for (i = 0; i < 5; i++) {
+    let span;
+    const letter = word[i];
+    if (letter === letter.toUpperCase()) {
+      span = createASpan(letter, true);
     } else {
-      span = createASpan(wordLetter, true);
+      span = createASpan(letter);
     }
 
     p.append(span);
-  });
+  }
+
   resultsDiv.append(p);
 }
 
 function createASpan(letter, isHighlight = false) {
   const span = document.createElement("span");
   if (isHighlight) span.classList.add("highlight");
-  span.innerHTML = letter;
+  span.innerHTML = letter.toLowerCase();
   return span;
 }
 
