@@ -18,15 +18,26 @@ function findWords(e) {
   const searchTermRegexString = "^" + searchTerm.replaceAll("?", "[a-z]") + "$";
   const searchTermRegex = new RegExp(searchTermRegexString);
 
+  let hasResult = false;
+
   for (word of words) {
     if (searchTermRegex.test(word)) {
-      const p = document.createElement("p");
-      p.innerHTML = word;
-      resultsDiv.append(p);
+      addAResult(word);
+      hasResult = true;
     }
+  }
+
+  if (!hasResult) {
+    addAResult("No word found.");
   }
 }
 
 function clearOldResults() {
   resultsDiv.innerHTML = "";
+}
+
+function addAResult(word) {
+  const p = document.createElement("p");
+  p.innerHTML = word;
+  resultsDiv.append(p);
 }
