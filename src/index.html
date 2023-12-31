@@ -37,18 +37,36 @@
 
         <form onsubmit="findWords(event)">
           <div class="form__input">
-            <input
-              type="text"
-              name="searchTerm"
-              maxlength="5"
-              placeholder="a??pt"
-              pattern="^[A-Za-z?]{5}$"
-              oninvalid="setCustomValidity('Exactly 5 letters, i.e. a??pt')"
-              oninput="setCustomValidity('')"
-              required
-            />
+            <label>
+              Pattern*:
+              <input
+                type="text"
+                name="searchTerm"
+                maxlength="5"
+                placeholder="a??pt"
+                pattern="^[A-Za-z?]{5}$"
+                oninvalid="setCustomValidity('Exactly 5 letters, i.e. a??pt')"
+                oninput="setCustomValidity('')"
+                required
+              />
+            </label>
             <p><em>Example: co?e? (Exactly 5 letters)</em></p>
           </div>
+
+          <div class="form__input">
+            <label>
+              Contains (optional):
+              <input
+                type="text"
+                name="contains"
+                maxlength="5"
+                placeholder="an,b"
+                pattern="^[A-Za-z,].*$"
+              />
+            </label>
+            <p><em>Example: an,b</em></p>
+          </div>
+
           <button>Search</button>
         </form>
 

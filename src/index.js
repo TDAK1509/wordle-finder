@@ -19,24 +19,35 @@ function findWords(e) {
   const searchTermRegexString = "^" + searchTerm.replaceAll("?", "[a-z]") + "$";
   const searchTermRegex = new RegExp(searchTermRegexString);
 
+  const wordContains = e.target.elements.contains.value
+    .toLowerCase()
+    .split(",");
+
   let hasResult = false;
 
   for (word of words) {
     if (searchTermRegex.test(word)) {
+      if (!testWordContaining(word, wordContains)) continue;
       addAResult(word, searchTermLetters);
       hasResult = true;
     }
   }
 
-  if (!hasResult) {
-    const p = document.createElement("p");
-    p.innerHTML = "No word found.";
-    resultsDiv.append(p);
-  }
+  if (!hasResult) setNoResult();
 }
 
 function clearOldResults() {
   resultsDiv.innerHTML = "";
+}
+
+function testWordContaining(word, contains) {
+  for (contain of contains) {
+    if (!word.includes(contain)) {
+      return false;
+    }
+  }
+
+  return true;
 }
 
 function addAResult(word, searchTermLetters) {
@@ -61,4 +72,10 @@ function createASpan(letter, isHighlight = false) {
   if (isHighlight) span.classList.add("highlight");
   span.innerHTML = letter;
   return span;
+}
+
+function setNoResult() {
+  const p = document.createElement("p");
+  p.innerHTML = "No word found.";
+  resultsDiv.append(p);
 }
