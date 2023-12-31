@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", event => {
 
 function findWords(e) {
   e.preventDefault();
-  const searchTerm = e.target.elements.searchTerm.value;
+  const searchTerm = e.target.elements.searchTerm.value.toLowerCase();
   const searchTermRegexString = "^" + searchTerm.replaceAll("?", "[a-z]") + "$";
   const searchTermRegex = new RegExp(searchTermRegexString);
 
