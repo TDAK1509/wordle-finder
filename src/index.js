@@ -15,6 +15,7 @@ function findWords(e) {
   clearOldResults();
 
   const searchTerm = e.target.elements.searchTerm.value.toLowerCase();
+  const searchTermLetters = searchTerm.split("");
   const searchTermRegexString = "^" + searchTerm.replaceAll("?", "[a-z]") + "$";
   const searchTermRegex = new RegExp(searchTermRegexString);
 
@@ -22,13 +23,15 @@ function findWords(e) {
 
   for (word of words) {
     if (searchTermRegex.test(word)) {
-      addAResult(word);
+      addAResult(word, searchTermLetters);
       hasResult = true;
     }
   }
 
   if (!hasResult) {
-    addAResult("No word found.");
+    const p = document.createElement("p");
+    p.innerHTML = "No word found.";
+    resultsDiv.append(p);
   }
 }
 
@@ -36,8 +39,26 @@ function clearOldResults() {
   resultsDiv.innerHTML = "";
 }
 
-function addAResult(word) {
+function addAResult(word, searchTermLetters) {
   const p = document.createElement("p");
-  p.innerHTML = word;
+  searchTermLetters.forEach((searchLetter, letterIndex) => {
+    const wordLetter = word[letterIndex];
+    let span;
+
+    if (searchLetter === "?") {
+      span = createASpan(wordLetter);
+    } else {
+      span = createASpan(wordLetter, true);
+    }
+
+    p.append(span);
+  });
   resultsDiv.append(p);
+}
+
+function createASpan(letter, isHighlight = false) {
+  const span = document.createElement("span");
+  if (isHighlight) span.classList.add("highlight");
+  span.innerHTML = letter;
+  return span;
 }

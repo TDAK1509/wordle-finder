@@ -43,3 +43,8 @@ form {
   text-align: left;
   padding: 0px 1em;
 }
+
+#results .highlight {
+  color: var(--color-primary);
+  font-weight: 700;
+}
