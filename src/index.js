@@ -1,4 +1,5 @@
 let words = [];
+const resultsDiv = document.getElementById("results");
 
 document.addEventListener("DOMContentLoaded", event => {
   fetch("words.txt")
@@ -11,17 +12,21 @@ document.addEventListener("DOMContentLoaded", event => {
 
 function findWords(e) {
   e.preventDefault();
+  clearOldResults();
+
   const searchTerm = e.target.elements.searchTerm.value.toLowerCase();
   const searchTermRegexString = "^" + searchTerm.replaceAll("?", "[a-z]") + "$";
   const searchTermRegex = new RegExp(searchTermRegexString);
-
-  const results = document.getElementById("results");
 
   for (word of words) {
     if (searchTermRegex.test(word)) {
       const p = document.createElement("p");
       p.innerHTML = word;
-      results.append(p);
+      resultsDiv.append(p);
     }
   }
+}
+
+function clearOldResults() {
+  resultsDiv.innerHTML = "";
 }
