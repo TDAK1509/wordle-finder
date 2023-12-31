@@ -7,12 +7,19 @@
     <link rel="stylesheet" href="index.css" />
   </head>
   <body>
-    <form onsubmit="findWords(event)">
-      <input type="text" name="searchTerm" placeholder="a??pt" />
-      <button>Find words</button>
-    </form>
+    <section>
+      <h2>Wordle Finder</h2>
 
-    <div id="results"></div>
+      <form onsubmit="findWords(event)">
+        <div class="form__input">
+          <input type="text" name="searchTerm" placeholder="a??pt" />
+          <p><em>Example: co?e?</em></p>
+        </div>
+        <button>Search</button>
+      </form>
+
+      <div id="results"></div>
+    </section>
 
     <script src="index.js"></script>
   </body>
