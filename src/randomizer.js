@@ -11,5 +11,10 @@ document.addEventListener("DOMContentLoaded", event => {
 });
 
 function randomAWord() {
-  resultDiv.innerHTML = "random";
+  const randomWord = words[getRandomInt(words.length)];
+  resultDiv.innerHTML = randomWord;
+}
+
+function getRandomInt(max) {
+  return Math.floor(Math.random() * max);
 }
