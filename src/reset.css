@@ -8,7 +8,7 @@
 :root {
   --border-color: #cbd5e1;
   --color-emphasis: #f97316;
-  --color-button: #ea580c;
+  --color-primary: #ea580c;
   --size-app-inner-width: 250px;
 }
 
@@ -34,8 +34,8 @@ button {
   padding: 8px 10px;
   font-size: 14pt;
   cursor: pointer;
-  background-color: var(--color-button);
-  border: 1px solid var(--color-button);
+  background-color: var(--color-primary);
+  border: 1px solid var(--color-primary);
   border-radius: 4px;
   color: white;
 }

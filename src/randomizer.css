@@ -6,6 +6,8 @@ main {
   margin: 1em 0;
 }
 
-.random-button {
-  
+#result {
+  margin-top: 1em;
+  font-size: 20pt;
+  color: var(--color-primary);
 }
