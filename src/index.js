@@ -15,19 +15,27 @@ function findWords(e) {
   clearOldResults();
 
   const searchTerm = e.target.elements.searchTerm.value.toLowerCase();
+
+  const mainMatchIndexes = [];
+  for (let i = 0; i < 5; i++) {
+    if (searchTerm[i] !== "?") mainMatchIndexes.push(i);
+  }
+
   const searchTermLetters = searchTerm.split("");
   const searchTermRegexString = "^" + searchTerm.replaceAll("?", "[a-z]") + "$";
   const searchTermRegex = new RegExp(searchTermRegexString);
 
-  const wordContains = e.target.elements.contains.value
-    .toLowerCase()
-    .split(",");
+  const optionalMatchesString = e.target.elements.contains.value.toLowerCase();
+  const optionalMatches = optionalMatchesString
+    ? optionalMatchesString.split(",")
+    : [];
 
   let hasResult = false;
 
   for (word of words) {
     if (searchTermRegex.test(word)) {
-      if (!testWordContaining(word, wordContains)) continue;
+      if (!testWordContaining(mainMatchIndexes, word, optionalMatches))
+        continue;
       addAResult(word, searchTermLetters);
       hasResult = true;
     }
@@ -40,9 +48,15 @@ function clearOldResults() {
   resultsDiv.innerHTML = "";
 }
 
-function testWordContaining(word, contains) {
+function testWordContaining(mainMatchIndexes, word, contains) {
+  let wordRemovingMainMatches = "";
+
+  for (let i = 0; i < 5; i++) {
+    if (!mainMatchIndexes.includes(i)) wordRemovingMainMatches += word[i];
+  }
+
   for (contain of contains) {
-    if (!word.includes(contain)) {
+    if (!wordRemovingMainMatches.includes(contain)) {
       return false;
     }
   }
