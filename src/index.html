@@ -7,7 +7,12 @@
     <link rel="stylesheet" href="index.css" />
   </head>
   <body>
-    <p>hahah</p>
+    <form onsubmit="findWords(event)">
+      <input type="text" name="searchTerm" value="cover" />
+      <button>Find words</button>
+    </form>
+
+    <div id="result"></div>
 
     <script src="index.js"></script>
   </body>
