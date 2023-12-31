@@ -6,7 +6,7 @@
     <meta
       name="description"
       hid="description"
-      content="Find your WORDLE words with an easy-to-use pattern. Random a 5-letter word for your first wordle guess."
+      content="Find your Wordle words with an easy-to-use pattern. Random a 5-letter word for your first wordle guess."
     />
     <meta
       name="keywords"
@@ -16,31 +16,39 @@
     <link rel="stylesheet" href="index.css" />
   </head>
   <body>
-    <section>
-      <h2>Wordle Finder</h2>
+    <main>
+      <section>
+        <h2>Wordle Finder</h2>
 
-      <div class="introduction">
-        <p>Find your WORDLE words with an easy-to-use pattern.</p>
-      </div>
-
-      <form onsubmit="findWords(event)">
-        <div class="form__input">
-          <input
-            type="text"
-            name="searchTerm"
-            placeholder="a??pt"
-            pattern="^[A-Za-z?]{5}$"
-            oninvalid="setCustomValidity('Exactly 5 letters, i.e. a??pt')"
-            oninput="setCustomValidity('')"
-            required
-          />
-          <p><em>Example: co?e? (Exactly 5 letters)</em></p>
+        <div class="introduction">
+          <p>Find your Wordle words with an easy-to-use pattern.</p>
         </div>
-        <button>Search</button>
-      </form>
 
-      <div id="results"></div>
-    </section>
+        <form onsubmit="findWords(event)">
+          <div class="form__input">
+            <input
+              type="text"
+              name="searchTerm"
+              placeholder="a??pt"
+              pattern="^[A-Za-z?]{5}$"
+              oninvalid="setCustomValidity('Exactly 5 letters, i.e. a??pt')"
+              oninput="setCustomValidity('')"
+              required
+            />
+            <p><em>Example: co?e? (Exactly 5 letters)</em></p>
+          </div>
+          <button>Search</button>
+        </form>
+
+        <div id="results"></div>
+      </section>
+    </main>
+
+    <footer>
+      <h3>Credit</h3>
+
+      <p>Words database: <a href="https://github.com/dwyl/english-words/blob/master/words.txt" target="_blank" rel="noreferrer noopener">https://github.com/dwyl/english-words/blob/master/words.txt</a></a></p>
+    </footer>
 
     <script src="index.js"></script>
   </body>

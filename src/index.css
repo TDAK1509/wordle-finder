@@ -11,6 +11,17 @@
   --color-button: #ea580c;
 }
 
+body { 
+  display:flex;
+  flex-direction:column;
+  min-height: 100vh;
+  padding: 20px;
+}
+
+main {
+  flex: 1;
+}
+
 p {
   font-size: 14pt;
 }
@@ -72,4 +83,12 @@ button:hover {
   column-gap: 0.3em;
   text-align: left;
   padding: 0px 1em;
+}
+
+footer h3 {
+  margin-bottom: 0.3em;
+}
+
+footer p {
+  font-size: 10pt;
 }
