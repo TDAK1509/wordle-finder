@@ -12,6 +12,16 @@ document.addEventListener("DOMContentLoaded", event => {
 function findWords(e) {
   e.preventDefault();
   const searchTerm = e.target.elements.searchTerm.value;
-  if (words.includes(searchTerm)) console.log(true);
-  else console.log(false);
+  const searchTermRegexString = "^" + searchTerm.replaceAll("?", "[a-z]") + "$";
+  const searchTermRegex = new RegExp(searchTermRegexString);
+
+  const results = document.getElementById("results");
+
+  for (word of words) {
+    if (searchTermRegex.test(word)) {
+      const p = document.createElement("p");
+      p.innerHTML = word;
+      results.append(p);
+    }
+  }
 }
