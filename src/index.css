@@ -20,6 +20,7 @@ body {
 
 main {
   flex: 1;
+  margin-bottom: 1em;
 }
 
 p {
@@ -89,6 +90,7 @@ footer h3 {
   margin-bottom: 0.3em;
 }
 
-footer p {
+footer ul {
   font-size: 10pt;
+  margin-left: 1em;
 }
