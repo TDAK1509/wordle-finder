@@ -17,7 +17,7 @@
     <link rel="stylesheet" href="reset.css" />
     <link rel="stylesheet" href="header.css" />
     <link rel="stylesheet" href="footer.css" />
-    <link rel="stylesheet" href="index.css" />
+    <link rel="stylesheet" href="randomizer.css" />
   </head>
   <body>
     <header>
@@ -28,31 +28,17 @@
     </header>
 
     <main>
-      <section>
-        <h2>Word Randomizer</h2>
+      <h2>Word Randomizer</h2>
 
-        <div class="introduction">
-          <p>Find your Wordle words with an easy-to-use pattern.</p>
-        </div>
+      <div class="introduction">
+        <p>Random a 5-letter word.</p>
+      </div>
 
-        <form onsubmit="findWords(event)">
-          <div class="form__input">
-            <input
-              type="text"
-              name="searchTerm"
-              placeholder="a??pt"
-              pattern="^[A-Za-z?]{5}$"
-              oninvalid="setCustomValidity('Exactly 5 letters, i.e. a??pt')"
-              oninput="setCustomValidity('')"
-              required
-            />
-            <p><em>Example: co?e? (Exactly 5 letters)</em></p>
-          </div>
-          <button>Search</button>
-        </form>
+      <button class="random-button" type="button" onclick="randomAWord()">
+        Random
+      </button>
 
-        <div id="results"></div>
-      </section>
+      <p id="result"></p>
     </main>
 
     <footer>
@@ -82,6 +68,6 @@
       </ul>
     </footer>
 
-    <script src="index.js"></script>
+    <script src="randomizer.js"></script>
   </body>
 </html>
