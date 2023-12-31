@@ -9,13 +9,13 @@
   --border-color: #cbd5e1;
   --color-emphasis: #f97316;
   --color-button: #ea580c;
+  --size-app-inner-width: 250px;
 }
 
 body { 
   display:flex;
   flex-direction:column;
   min-height: 100vh;
-  padding: 20px;
   max-width: 600px;
   margin: auto;
 }

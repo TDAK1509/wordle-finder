@@ -1,6 +1,7 @@
 main {
   flex: 1;
   margin-bottom: 1em;
+  padding: 20px;
 }
 
 section {
@@ -35,7 +36,7 @@ em {
 
 form {
   display: grid;
-  width: min(250px, 80%);
+  width: min(var(--size-app-inner-width), 80%);
   margin: 1em auto;
   row-gap: 0.5em;
 }

@@ -14,23 +14,44 @@
     />
     <title>Wordle Randomizer</title>
     <link rel="icon" type="image/x-icon" href="assets/images/favicon.ico" />
+    <link rel="stylesheet" href="reset.css" />
+    <link rel="stylesheet" href="header.css" />
+    <link rel="stylesheet" href="footer.css" />
     <link rel="stylesheet" href="index.css" />
   </head>
   <body>
     <header>
       <nav>
         <a href="./index.html">Finder</a>
-        <a href="./randomizer.html">Randomizer</a>
+        <a class="active" href="./randomizer.html">Randomizer</a>
       </nav>
     </header>
 
     <main>
       <section>
-        <h2>Wordle Finder</h2>
+        <h2>Word Randomizer</h2>
 
         <div class="introduction">
           <p>Find your Wordle words with an easy-to-use pattern.</p>
         </div>
+
+        <form onsubmit="findWords(event)">
+          <div class="form__input">
+            <input
+              type="text"
+              name="searchTerm"
+              placeholder="a??pt"
+              pattern="^[A-Za-z?]{5}$"
+              oninvalid="setCustomValidity('Exactly 5 letters, i.e. a??pt')"
+              oninput="setCustomValidity('')"
+              required
+            />
+            <p><em>Example: co?e? (Exactly 5 letters)</em></p>
+          </div>
+          <button>Search</button>
+        </form>
+
+        <div id="results"></div>
       </section>
     </main>
 
