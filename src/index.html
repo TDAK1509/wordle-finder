@@ -38,7 +38,7 @@
         <form onsubmit="findWords(event)">
           <div class="form__input">
             <label>
-              Pattern*:
+              Exact pattern*:
               <input
                 type="text"
                 name="searchTerm"
@@ -55,7 +55,7 @@
 
           <div class="form__input">
             <label>
-              Contains (optional):
+              Word contains:
               <input
                 type="text"
                 name="contains"
@@ -65,6 +65,19 @@
               />
             </label>
             <p><em>Example: an,b</em></p>
+          </div>
+
+          <div class="form__input">
+            <label>
+              Word does not contain:
+              <input
+                type="text"
+                name="not_contain"
+                placeholder="a,b"
+                pattern="^[A-Za-z,].*$"
+              />
+            </label>
+            <p><em>Example: a,b</em></p>
           </div>
 
           <button>Search</button>

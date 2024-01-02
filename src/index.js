@@ -23,6 +23,9 @@ function findWords(e) {
     ? optionalMatchesString.split(",")
     : [];
 
+  const notIncludeString = e.target.elements.not_contain.value.toLowerCase();
+  const notIncludes = notIncludeString ? notIncludeString.split(",") : [];
+
   let hasResult = false;
 
   for (word of words) {
@@ -32,7 +35,12 @@ function findWords(e) {
         word,
         optionalMatches
       );
-      if (!processedWord) continue;
+      if (
+        !processedWord ||
+        wordContainingNotIncludeLetters(processedWord, notIncludes)
+      )
+        continue;
+
       addAResult(processedWord);
       hasResult = true;
     }
@@ -62,6 +70,14 @@ function testWordContaining(searchTerm, word, contains) {
   }
 
   return wordRemovingMainMatches;
+}
+
+function wordContainingNotIncludeLetters(word, notIncludes) {
+  for (notInclude of notIncludes) {
+    if (word.includes(notInclude)) return true;
+  }
+
+  return false;
 }
 
 function addAResult(word) {
